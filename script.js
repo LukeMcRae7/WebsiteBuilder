@@ -65,6 +65,7 @@ function selectElement(id) {
 
 function deselectElement() {
     document.getElementById(selectedElement).classList.remove('selected');
+    selectedElement = null;
 }
 
 function applyStyle(property, value) {
