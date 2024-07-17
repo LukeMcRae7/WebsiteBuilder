@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Builder</title>
+<link rel="stylesheet" href="styles.css">
+<script src="script.js"></script>
+</head>
+<body>
+<div id="topMenu">
+    <div class="menuGroup">
+        <h3>Font</h3>
+        <select id="fontFamily" onchange="applyStyle('fontFamily', this.value)">
+            <option value="Arial">Arial</option>
+            <option value="Helvetica">Helvetica</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Courier">Courier</option>
+        </select>
+        <select id="fontSize" onchange="applyStyle('fontSize', this.value + 'px')">
+            <option value="12">12</option>
+            <option value="14">14</option>
+            <option value="16">16</option>
+            <option value="18">18</option>
+            <option value="24">24</option>
+            <option value="32">32</option>
+            <option value="48">48</option>
+            <option value="60">60</option>
+        </select>
+    </div>
+    <div class="menuGroup">
+        <h3>Style</h3>
+        <span class="menuItem" onclick="applyStyle('fontWeight', 'bold')">B</span>
+        <span class="menuItem" onclick="applyStyle('fontStyle', 'italic')">I</span>
+        <span class="menuItem" onclick="applyStyle('textDecoration', 'underline')">U</span>
+    </div>
+    <div class="menuGroup">
+        <h3>Align</h3>
+        <span class="menuItem" onclick="applyStyle('textAlign', 'left')">Left</span>
+        <span class="menuItem" onclick="applyStyle('textAlign', 'center')">Center</span>
+        <span class="menuItem" onclick="applyStyle('textAlign', 'right')">Right</span>
+    </div>
+    <div class="menuGroup">
+        <h3>Color</h3>
+        <input type="color" onchange="applyStyle('color', this.value)">
+    </div>
+    <div class="menuGroup">
+        <h3>Background</h3>
+        <input type="color" onchange="applyBodyStyle('backgroundColor', this.value)">
+    </div>
+</div>
+<div id="mainContent">
+    <div id="controls">
+        <button onclick="addHeading()">Add Heading</button>
+        <button onclick="addParagraph()">Add Paragraph</button>
+        <button onclick="addImage()">Add Image</button>
+        <button onclick="generateHTML()">Generate HTML</button>
+        <h3 style="color: white">Elements</h3>
+        <div id="elementList"></div>
+    </div>
+    <div id="preview" onclick="deselectElement()"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+#topMenu {
+    background-color: #2a2b35;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+}
+.menuGroup {
+    display: inline-block;
+    margin-right: 20px;
+    vertical-align: top;
+}
+.menuGroup h3 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    color: #b1b1b1;
+}
+.menuItem {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.menuItem:hover {
+    background-color: #e6e6e6;
+}
+#mainContent {
+    display: flex;
+    flex-grow: 1;
+}
+#controls {
+    width: 300px;
+    background-color: #383943;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+#preview {
+    flex-grow: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #45a049;
+}
+input, textarea {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+#elementList {
+    flex-grow: 1;
+    overflow-y: auto;
+    border: 1px solid #464750;
+    margin-top: 10px;
+    padding: 10px;
+    color: #c8c8ca;
+}
+.element-item {
+    padding: 5px;
+    cursor: pointer;
+    border-bottom: 1px solid #464750;
+}
+.element-item:hover {
+    background-color: #41424a;
+}
+.selected {
+    background-color: #d0d0d0;
+}
