@@ -1,5 +1,6 @@
 let elements = [];
-let selectedElement = null;
+let selectedElements = new Set();
+let isShifted = false;
 
 function addHeading() {
     const text = prompt("Enter heading text:");
@@ -42,42 +43,121 @@ function updateElementList() {
     list.innerHTML = '';
     elements.forEach((item, index) => {
         const div = document.createElement('div');
+        const textSpan = document.createElement('span');
+        const delBtn = document.createElement('button');
+        
+        delBtn.textContent = 'del';
+        delBtn.className = 'delBtn';
+        delBtn.onclick = (event) => {
+            event.stopPropagation();
+            removeElement(item.id);
+        };
+        
+        textSpan.textContent = `${index + 1}. ${item.description}`;
+        
         div.className = 'element-item';
-        div.textContent = `${index + 1}. ${item.description}`;
+        if (selectedElements.has(item.id)) {
+            div.classList.add('selected');
+        }
+        div.appendChild(textSpan);
+        div.appendChild(delBtn);
+        
         div.setAttribute('draggable', true);
         div.id = `list-${item.id}`;
-        div.onclick = () => selectElement(item.id);
+        div.onclick = () => toggleElementSelection(item.id);
         div.ondragstart = drag;
         div.ondragover = allowDrop;
         div.ondrop = drop;
+        
         list.appendChild(div);
     });
 }
 
-function selectElement(id) {
-    if (selectedElement) {
-        document.getElementById(selectedElement).classList.remove('selected');
+function isKeyPressed(event) {
+    if(event.shiftKey) {
+        isShifted = true;
     }
-    selectedElement = id;
+}
+
+function isKeyUp(event){
+    if(event.shiftKey) {
+        isShifted = false;
+    }
+}
+
+function toggleElementSelection(id) {
+   /* if (selectedElements.has(id)) {
+        selectedElements.delete(id);
+        document.getElementById(id).classList.remove('selected');
+    } else {
+        selectedElements.add(id);
+        document.getElementById(id).classList.add('selected');
+    }*/
+    if (isShifted){
+        selectedElements.add(id);
+        document.getElementById(id).classList.add('selected');
+        updateElementList();
+    }
+    else {
+    deselectAllElements();
+    selectedElements.add(id);
     document.getElementById(id).classList.add('selected');
+    updateElementList();
+    }
+}
+
+function removeElement(id) {
+    // Remove from DOM
+    const elementToRemove = document.getElementById(id);
+    if (elementToRemove) {
+        elementToRemove.remove();
+    }
+
+    // Remove from elements array
+    elements = elements.filter(item => item.id !== id);
+
+    updateElementList();
+
+    updatePreview();
+}
+
+function updatePreview() {
+    const preview = document.getElementById('preview');
+    preview.innerHTML = '';
+    elements.forEach(item => preview.appendChild(item.element));
+}
+
+function selectAllElements() {
+    // Clear current selection
+    selectedElements.clear();
+
+    // Select all elements
+    elements.forEach(item => {
+        selectedElements.add(item.id);
+        document.getElementById(item.id).classList.add('selected');
+    });
+
+    // Update the element list to reflect the selection
     updateElementList();
 }
 
-function deselectElement() {
-    document.getElementById(selectedElement).classList.remove('selected');
-    selectedElement = null;
+function deselectAllElements() {
+    selectedElements.forEach(id => {
+        document.getElementById(id).classList.remove('selected');
+    });
+    selectedElements.clear();
+    updateElementList();
 }
 
 function applyStyle(property, value) {
-    if (selectedElement) {
-        if (document.getElementById(selectedElement).style[property] !== value) {
-            document.getElementById(selectedElement).style[property] = value;
+    selectedElements.forEach(id => {
+        const element = document.getElementById(id);
+        if (element.style[property] !== value) {
+            element.style[property] = value;
+        } else {
+            element.style[property] = '';
         }
-        else {
-            document.getElementById(selectedElement).style[property] = 'normal';
-            document.getElementById(selectedElement).style[property] = 'none';
-        }
-    }
+    });
 }
 
 function applyBodyStyle(property, value) {

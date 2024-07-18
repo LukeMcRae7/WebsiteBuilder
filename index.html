@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="styles.css">
 <script src="script.js"></script>
 </head>
-<body>
+<body onkeydown="isKeyPressed(event)" onkeyup="isKeyUp(event)">
 <div id="topMenu">
     <div class="menuGroup">
         <h3>Font</h3>
@@ -56,9 +56,10 @@
         <button onclick="addImage()">Add Image</button>
         <button onclick="generateHTML()">Generate HTML</button>
         <h3 style="color: white">Elements</h3>
+        <span class="menuItem" onclick="selectAllElements()">Select All</span>
         <div id="elementList"></div>
     </div>
-    <div id="preview" onclick="deselectElement()"></div>
+    <div id="preview" onclick="deselectAllElements()"></div>
 </div>
 </body>
 </html>

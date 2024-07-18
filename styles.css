@@ -70,6 +70,19 @@ input, textarea {
     padding: 5px;
     margin-bottom: 10px;
 }
+.delBtn {
+    width: 25px;
+    height: 25px;
+    background-color: #e16969;
+    color: #5c1717;
+    margin-left: 10px;
+    margin-top: 5px;
+    text-align: center;
+    font-size: 10px;
+}
+.delBtn:hover {
+    background-color: #ba4c4c; 
+}
 #elementList {
     flex-grow: 1;
     overflow-y: auto;
@@ -82,6 +95,9 @@ input, textarea {
     padding: 5px;
     cursor: pointer;
     border-bottom: 1px solid #464750;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
 }
 .element-item:hover {
     background-color: #41424a;
