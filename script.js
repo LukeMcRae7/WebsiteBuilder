@@ -39,6 +39,14 @@ function addElement(element, description) {
     updateElementList();
 }
 
+function editText() {
+    const text = prompt("Enter new text:");
+    selectedElements.forEach(id => {
+        document.getElementById(id).innerHTML = text;
+    });
+    updateElementList();
+}
+
 function isAnyImages() {
     for (let i = 0; i < selectedElements.length; i++) {
         const element = document.getElementById(selectedElements[i]);
@@ -70,61 +78,7 @@ function updateElementList() {
         
         div.className = 'element-item';
         if (selectedElements.has(item.id)) {
-            div.classList.add('selected');
-        }
-        div.appendChild(textSpan);
-        div.appendChild(delBtn);
-        
-        div.setAttribute('draggable', true);
-        div.id = `list-${item.id}`;
-        div.onclick = () => toggleElementSelection(item.id);
-        div.ondragstart = drag;
-        div.ondragover = allowDrop;
-        div.ondrop = drop;
-        
-        list.appendChild(div);
-        
-        const element = document.getElementById(item.id);
-        if (element && element.tagName.toLowerCase() === 'img' && selectedElements.has(item.id)) {
-            imageSelected = true;
-        }
-    });
-
-    imageSelected = imageSelected || isAnyImages();
-    console.log(imageSelected);
-    console.log(selectedElements.size);
-}function isAnyImages() {
-    for (let i = 0; i < selectedElements.length; i++) {
-        const element = document.getElementById(selectedElements[i]);
-        if (element && element.tagName.toLowerCase() === 'img') {
-            return true;
-        }
-    }
-    return false;
-}
-
-function updateElementList() {
-    const list = document.getElementById('elementList');
-    list.innerHTML = '';
-    let imageSelected = false;
-
-    elements.forEach((item, index) => {
-        const div = document.createElement('div');
-        const textSpan = document.createElement('span');
-        const delBtn = document.createElement('button');
-        
-        delBtn.textContent = 'del';
-        delBtn.className = 'delBtn';
-        delBtn.onclick = (event) => {
-            event.stopPropagation();
-            removeElement(item.id);
-        };
-        
-        textSpan.textContent = `${index + 1}. ${item.description}`;
-        
-        div.className = 'element-item';
-        if (selectedElements.has(item.id)) {
-            div.classList.add('selected');
+            div.classList.add('eleSelected');
         }
         div.appendChild(textSpan);
         div.appendChild(delBtn);
@@ -167,13 +121,6 @@ function isKeyUp(event){
 }
 
 function toggleElementSelection(id) {
-   /* if (selectedElements.has(id)) {
-        selectedElements.delete(id);
-        document.getElementById(id).classList.remove('selected');
-    } else {
-        selectedElements.add(id);
-        document.getElementById(id).classList.add('selected');
-    }*/
     if (isShifted){
         selectedElements.add(id);
         document.getElementById(id).classList.add('selected');

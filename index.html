@@ -17,7 +17,7 @@
             <option value="Times New Roman">Times New Roman</option>
             <option value="Courier">Courier</option>
         </select>
-        <select id="fontSize" onchange="applyStyle('fontSize', this.value + 'px')">
+        <select id="fontSize" onselect="applyStyle('fontSize', this.value + 'px')" onchange="applyStyle('fontSize', this.value + 'px')">
             <option value="12">12</option>
             <option value="14">14</option>
             <option value="16">16</option>
@@ -30,15 +30,16 @@
     </div>
     <div class="menuGroup">
         <h3>Style</h3>
-        <span class="menuItem" onclick="applyStyle('fontWeight', 'bold')">B</span>
-        <span class="menuItem" onclick="applyStyle('fontStyle', 'italic')">I</span>
-        <span class="menuItem" onclick="applyStyle('textDecoration', 'underline')">U</span>
+        <span style="font-weight: bold;" class="menuItem" onclick="applyStyle('fontWeight', 'bold')">B</span>
+        <span style="font-style: italic;" class="menuItem" onclick="applyStyle('fontStyle', 'italic')">I</span>
+        <span style="text-decoration: underline;" class="menuItem" onclick="applyStyle('textDecoration', 'underline')">U</span>
     </div>
     <div class="menuGroup">
         <h3>Align</h3>
         <span class="menuItem" onclick="applyAlign('left')">Left</span>
         <span class="menuItem" onclick="applyAlign('center')">Center</span>
         <span class="menuItem" onclick="applyAlign('right')">Right</span>
+        <span class="menuItem" onclick="editText()">Edit Text</span>
     </div>
     <div class="menuGroup">
         <h3>Color</h3>
@@ -48,7 +49,7 @@
         <h3>Background</h3>
         <input type="color" onchange="applyBodyStyle('backgroundColor', this.value)">
     </div>
-    <div id="imageControls" style="display: inline; opacity: 0;">
+    <div id="imageControls" style="display: inline; opacity: 0; transition: 0.1s;">
     <div style="display: inline-flex; border-left: 2px solid #b1b1b1; height: 100%; width: 10px;"></div>
     <div class="menuGroup">
         <h3>Image Scale</h3>

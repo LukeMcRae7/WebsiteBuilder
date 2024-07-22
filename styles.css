@@ -98,10 +98,14 @@ input, textarea {
     align-items: center;
     justify-content: space-between;
     display: flex;
+    transition: 0.1s;
 }
 .element-item:hover {
+    background-color: #3d3e46;
+}
+.eleSelected {
     background-color: #41424a;
 }
 .selected {
-    background-color: #d0d0d0;
+    background-color: #daddee;
 }
