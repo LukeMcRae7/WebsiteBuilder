@@ -1,6 +1,7 @@
 let elements = [];
 let selectedElements = new Set();
 let isShifted = false;
+let imageSelected = false;
 
 function addHeading() {
     const text = prompt("Enter heading text:");
@@ -38,9 +39,21 @@ function addElement(element, description) {
     updateElementList();
 }
 
+function isAnyImages() {
+    for (let i = 0; i < selectedElements.length; i++) {
+        const element = document.getElementById(selectedElements[i]);
+        if (element && element.tagName.toLowerCase() === 'img') {
+            return true;
+        }
+    }
+    return false;
+}
+
 function updateElementList() {
     const list = document.getElementById('elementList');
     list.innerHTML = '';
+    let imageSelected = false;
+
     elements.forEach((item, index) => {
         const div = document.createElement('div');
         const textSpan = document.createElement('span');
@@ -70,7 +83,75 @@ function updateElementList() {
         div.ondrop = drop;
         
         list.appendChild(div);
+        
+        const element = document.getElementById(item.id);
+        if (element && element.tagName.toLowerCase() === 'img' && selectedElements.has(item.id)) {
+            imageSelected = true;
+        }
     });
+
+    imageSelected = imageSelected || isAnyImages();
+    console.log(imageSelected);
+    console.log(selectedElements.size);
+}function isAnyImages() {
+    for (let i = 0; i < selectedElements.length; i++) {
+        const element = document.getElementById(selectedElements[i]);
+        if (element && element.tagName.toLowerCase() === 'img') {
+            return true;
+        }
+    }
+    return false;
+}
+
+function updateElementList() {
+    const list = document.getElementById('elementList');
+    list.innerHTML = '';
+    let imageSelected = false;
+
+    elements.forEach((item, index) => {
+        const div = document.createElement('div');
+        const textSpan = document.createElement('span');
+        const delBtn = document.createElement('button');
+        
+        delBtn.textContent = 'del';
+        delBtn.className = 'delBtn';
+        delBtn.onclick = (event) => {
+            event.stopPropagation();
+            removeElement(item.id);
+        };
+        
+        textSpan.textContent = `${index + 1}. ${item.description}`;
+        
+        div.className = 'element-item';
+        if (selectedElements.has(item.id)) {
+            div.classList.add('selected');
+        }
+        div.appendChild(textSpan);
+        div.appendChild(delBtn);
+        
+        div.setAttribute('draggable', true);
+        div.id = `list-${item.id}`;
+        div.onclick = () => toggleElementSelection(item.id);
+        div.ondragstart = drag;
+        div.ondragover = allowDrop;
+        div.ondrop = drop;
+        
+        list.appendChild(div);
+        
+        const element = document.getElementById(item.id);
+        if (element && element.tagName.toLowerCase() === 'img' && selectedElements.has(item.id)) {
+            imageSelected = true;
+        }
+    });
+
+    imageSelected = imageSelected || isAnyImages();
+    if (imageSelected) {
+        document.getElementById('imageControls').style.opacity = '1';
+        document.getElementById('imageRange').disabled = false;
+    } else {
+        document.getElementById('imageControls').style.opacity = '0';
+        document.getElementById('imageRange').disabled = true;
+    }
 }
 
 function isKeyPressed(event) {
@@ -102,7 +183,7 @@ function toggleElementSelection(id) {
     deselectAllElements();
     selectedElements.add(id);
     document.getElementById(id).classList.add('selected');
-    updateElementList();
+    updateElementList()
     }
 }
 
@@ -156,6 +237,28 @@ function applyStyle(property, value) {
             element.style[property] = value;
         } else {
             element.style[property] = '';
+        }
+    });
+}
+
+function applyAlign(side) {
+    selectedElements.forEach(id => {
+        const element = document.getElementById(id);
+        if (element && element.tagName.toLowerCase() === 'img') {
+            element.style.display = 'block';
+
+            if (side == 'center'){
+            element.style.marginLeft = 'auto';
+            element.style.marginRight = 'auto';
+            } else if (side == 'right') {
+            element.style.marginLeft = 'auto';
+            element.style.marginRight = '0%';
+            } else if (side == 'left') {
+            element.style.marginLeft = '0%';
+            element.style.marginRight = 'auto';
+            }
+        } else {
+            element.style.textAlign = side;
         }
     });
 }
