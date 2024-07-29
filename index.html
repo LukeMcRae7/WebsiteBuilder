@@ -14,7 +14,7 @@
         <select id="fontFamily" onchange="applyStyle('fontFamily', this.value)">
             <option value="Arial">Arial</option>
             <option value="Helvetica">Helvetica</option>
-            <option value="Times New Roman">Times New Roman</option>
+            <option value="TimesNewRoman">Times New Roman</option>
             <option value="Courier">Courier</option>
         </select>
         <select id="fontSize" onselect="applyStyle('fontSize', this.value + 'px')" onchange="applyStyle('fontSize', this.value + 'px')">
@@ -30,15 +30,15 @@
     </div>
     <div class="menuGroup">
         <h3>Style</h3>
-        <span style="font-weight: bold;" class="menuItem" onclick="applyStyle('fontWeight', 'bold')">B</span>
-        <span style="font-style: italic;" class="menuItem" onclick="applyStyle('fontStyle', 'italic')">I</span>
-        <span style="text-decoration: underline;" class="menuItem" onclick="applyStyle('textDecoration', 'underline')">U</span>
+        <span id="boldButton" style="font-weight: bold;" toggled="false" class="menuItem" onclick="applyStyle('fontWeight', 700, this, 400)">B</span>
+        <span id="italicButton" style="font-style: italic;" class="menuItem" onclick="applyStyle('fontStyle', 'italic', this)">I</span>
+        <span id="underlineButton" style="text-decoration: underline;" class="menuItem" onclick="applyStyle('textDecoration', 'underline', this)">U</span>
     </div>
     <div class="menuGroup">
         <h3>Align</h3>
-        <span class="menuItem" onclick="applyAlign('left')">Left</span>
-        <span class="menuItem" onclick="applyAlign('center')">Center</span>
-        <span class="menuItem" onclick="applyAlign('right')">Right</span>
+        <span id="leftButton" class="menuItem" onclick="applyAlign('left', this)">Left</span>
+        <span id="centerButton" class="menuItem" onclick="applyAlign('center', this)">Center</span>
+        <span id="rightButton" class="menuItem" onclick="applyAlign('right', this)">Right</span>
         <span class="menuItem" onclick="editText()">Edit Text</span>
     </div>
     <div class="menuGroup">
@@ -47,7 +47,7 @@
     </div>
     <div class="menuGroup">
         <h3>Background</h3>
-        <input type="color" onchange="applyBodyStyle('backgroundColor', this.value)">
+        <input type="color" value="#ffffff" onchange="applyBodyStyle('backgroundColor', this.value)">
     </div>
     <div id="imageControls" style="display: inline; opacity: 0; transition: 0.1s;">
     <div style="display: inline-flex; border-left: 2px solid #b1b1b1; height: 100%; width: 10px;"></div>

@@ -2,12 +2,15 @@ let elements = [];
 let selectedElements = new Set();
 let isShifted = false;
 let imageSelected = false;
-
+const menuItems = document.getElementsByClassName('menuItem');
 function addHeading() {
     const text = prompt("Enter heading text:");
     if (text) {
         const heading = document.createElement('h2');
         heading.textContent = text;
+        heading.style.fontSize = '24px';
+        heading.style.fontFamily = 'Arial';
+        heading.style.fontWeight = 700;
         addElement(heading, 'Heading: ' + text);
     }
 }
@@ -17,6 +20,9 @@ function addParagraph() {
     if (text) {
         const para = document.createElement('p');
         para.textContent = text;
+        para.style.fontSize = '16px';
+        para.style.fontFamily = 'Arial';
+        para.style.fontWeight = 400;
         addElement(para, 'Paragraph: ' + text.substring(0, 20) + '...');
     }
 }
@@ -27,6 +33,7 @@ function addImage() {
         const img = document.createElement('img');
         img.src = url;
         img.style.maxWidth = '100%';
+        img.style.width = '25%'
         addElement(img, 'Image: ' + url.substring(0, 20) + '...');
     }
 }
@@ -109,29 +116,86 @@ function updateElementList() {
 }
 
 function isKeyPressed(event) {
-    if(event.shiftKey) {
+    if(event.key === 'Shift') {
         isShifted = true;
     }
 }
 
 function isKeyUp(event){
-    if(event.shiftKey) {
+    if(event.key === 'Shift') {
         isShifted = false;
     }
 }
 
+function selectedElementsAreSame(trait) {
+    if (selectedElements.size === 0) {
+        return false;
+    }
+
+    let firstValue = null;
+    for (let id of selectedElements) {
+        const element = document.getElementById(id);
+        if (!element) continue;
+
+        const value = window.getComputedStyle(element)[trait];
+        
+        if (firstValue === null) {
+            firstValue = value;
+        } else if (value.toString() !== firstValue.toString()) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function updateUIControls() {
+    if (selectedElementsAreSame('fontSize')) {
+        const fontSize = window.getComputedStyle(document.getElementById(elements[0].id)).fontSize;
+        document.getElementById('fontSize').value = parseInt(fontSize);
+    } else {
+        document.getElementById('fontSize').value = '';
+    }
+
+    if (selectedElementsAreSame('fontFamily')) {
+        const fontFamily = window.getComputedStyle(document.getElementById(elements[0].id)).fontFamily;
+        document.getElementById('fontFamily').value = fontFamily;
+    } else {
+        document.getElementById('fontFamily').value = '';
+    }
+
+    if (selectedElementsAreSame('fontWeight') && document.getElementById(Array.from(selectedElements)[0]).style.fontWeight == 700) {
+        document.getElementById('boldButton').toggled = true;
+    } else {
+        document.getElementById('boldButton').toggled = false;
+    }
+
+    if (selectedElementsAreSame('fontStyle') && document.getElementById(Array.from(selectedElements)[0]).style.fontStyle == 'italic') {
+        document.getElementById('italicButton').toggled = true;
+    } else {
+        document.getElementById('italicButton').toggled = false;
+    }
+
+    if (selectedElementsAreSame('textDecoration') && document.getElementById(Array.from(selectedElements)[0]).style.textDecoration == 'underline') {
+        document.getElementById('underlineButton').toggled = true;
+    } else {
+        document.getElementById('underlineButton').toggled = false;
+    }
+
+    Array.from(menuItems).forEach(updatedButtonBackground);
+}
+
 function toggleElementSelection(id) {
-    if (isShifted){
+    const selectedElement = document.getElementById(id);
+    if (isShifted) {
         selectedElements.add(id);
-        document.getElementById(id).classList.add('selected');
-        updateElementList();
+        selectedElement.classList.add('selected');
+    } else {
+        deselectAllElements();
+        selectedElements.add(id);
+        selectedElement.classList.add('selected');
     }
-    else {
-    deselectAllElements();
-    selectedElements.add(id);
-    document.getElementById(id).classList.add('selected');
-    updateElementList()
-    }
+    updateElementList();
+    updateUIControls();
 }
 
 function removeElement(id) {
@@ -167,6 +231,9 @@ function selectAllElements() {
 
     // Update the element list to reflect the selection
     updateElementList();
+
+    // New: Update UI controls based on selected elements
+    updateUIControls();
 }
 
 function deselectAllElements() {
@@ -177,18 +244,53 @@ function deselectAllElements() {
     updateElementList();
 }
 
-function applyStyle(property, value) {
-    selectedElements.forEach(id => {
-        const element = document.getElementById(id);
-        if (element.style[property] !== value) {
-            element.style[property] = value;
-        } else {
-            element.style[property] = '';
-        }
-    });
+function buttonSelection(button, type) {
+    if (type === 'style') {
+        button.toggled = !button.toggled;
+    } else if (type === 'align') {
+        //document.getElementById('leftButton').toggled = false;
+        //document.getElementById('centerButton').toggled = false;
+        //document.getElementById('rightButton').toggled = false;
+
+        //button.toggled = true;
+    }
+
+
+    Array.from(menuItems).forEach(updatedButtonBackground);
 }
 
-function applyAlign(side) {
+    function updatedButtonBackground(item) {
+        if (item.toggled) {
+            item.style.backgroundColor = '#9c9ca5';
+        }
+        else {
+            item.style.backgroundColor = '#fff'
+        }
+    }
+
+function applyStyle(property, value, button, alternative) {
+    selectedElements.forEach(id => {
+        const element = document.getElementById(id);
+        if (button){
+            if (!button.toggled) {
+                element.style[property] = value;
+            } else {
+                if (alternative) {
+                element.style[property] = alternative;
+                } else {
+                element.style[property] = '';
+                }
+            }
+        } else {
+            element.style[property] = value;
+        }
+    });
+    if (button) {
+        buttonSelection(button, 'style')
+    }
+}
+
+function applyAlign(side, button) {
     selectedElements.forEach(id => {
         const element = document.getElementById(id);
         if (element && element.tagName.toLowerCase() === 'img') {
@@ -208,6 +310,9 @@ function applyAlign(side) {
             element.style.textAlign = side;
         }
     });
+    if (button) {
+        buttonSelection(button, 'align')
+    }
 }
 
 function applyBodyStyle(property, value) {
@@ -217,7 +322,6 @@ function applyBodyStyle(property, value) {
 function generateHTML() {
     const content = document.getElementById('preview').innerHTML;
     const theBackgroundColor = document.getElementById('preview').style.backgroundColor;
-    console.log(theBackgroundColor);
     const html = `
 <!DOCTYPE html>
 <html lang="en">
