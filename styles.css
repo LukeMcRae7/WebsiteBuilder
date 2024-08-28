@@ -20,12 +20,13 @@ body {
 .menuGroup h3 {
     margin: 0 0 5px 0;
     font-size: 14px;
-    color: #8de3a8;
+  color: rgb(85, 200, 166);
+  filter: brightness(120%);
 }
 .menuItem {
     display: inline-block;
     padding: 5px 10px;
-    background-color: #e0e5ef;
+    background-color: #ffffff;
     border: 1px solid #3c3c40;
     margin-right: 5px;
     cursor: pointer;
@@ -34,12 +35,34 @@ body {
 .menuItem:hover {
     background-color: #e6e6e6;
 }
+.menuGroup > input {
+    height: 30px;
+    margin-bottom: 0;
+}
+.menuGroup > span {
+    transition: 0.1s all;
+}
 .mainControls {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
 }
-
+.alignWrapper {
+    padding: 0;
+    margin: 0;
+    border-radius: 8px;
+    font-size: 0;
+    overflow: hidden;
+}
+.alignImg {
+    padding: 0;
+    height: 29px;
+    margin: 0;
+    border-radius: 0;
+}
+.alignImg > img {
+    width: 30px;
+}
 #mainContent {
     display: flex;
     flex-grow: 1;
@@ -58,35 +81,37 @@ body {
     box-sizing: border-box;
     overflow-y: auto;
 }
-button {
+.mainControls > button {
     display: flex; 
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 5px;
     margin: 5px;
-    background-color: #23703c;
-    color: rgb(190, 190, 190);
+    background-color: rgb(15, 123, 91);
+    color: rgb(191, 190, 190);
     border: none;
     cursor: pointer;
     border-radius: 6px;
     font-size: 10px;
     height: 120px;
     width: 120px;
-    transition: 0.1s all;
+    transition: 0.15s all;
 }
-button > img {
-    filter:invert(70%)
-
+.mainControls > button > img {
+    filter:invert(70%);
 }
 select {
     height: 30px;
+    font-size: 15px;
 }
-button:hover {
-    background-color: #289e4d;
-    color: white;
+.mainControls > button:hover {
+    background-color: rgb(22, 193, 141);
+    color: rgb(255, 255, 255);
+    scale: 1.07;
+    box-shadow: 0 0 20px rgba(15, 71, 35, 0.9) inset;
 }
-button:hover > img {
+.mainControls > button:hover > img {
     filter: invert();
 }
 input, textarea {
@@ -94,18 +119,55 @@ input, textarea {
     padding: 5px;
     margin-bottom: 10px;
 }
-.delBtn {
-    width: 25px;
-    height: 25px;
+span {
+    text-align: center;
+}
+.delBtn, .editBtn {
+    width: 30px;
+    height: 30px;
     background-color: #e16969;
     color: #5c1717;
-    margin-left: 10px;
-    margin-top: 5px;
+    margin-left: 3px;
     text-align: center;
     font-size: 10px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 3px;
+    transition: 0.1s all;
 }
+
+.editBtn {
+    background-color: #16457a;
+    color: #173a5c;
+}
+
 .delBtn:hover {
-    background-color: #ba4c4c; 
+    background-color: #b41010; 
+    filter: brightness(150%);
+}
+
+.editBtn:hover {
+    background-color: #2f8ced;
+    filter: brightness(150%);
+}
+
+.delBtn > img{
+    width: 23px;
+    height: 23px;
+    filter: invert();
+}
+.editBtn > img {
+    width: 27px;
+    height: 27px;
+    filter: invert();
+}
+.element-buttons {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
 }
 #elementList {
     flex-grow: 1;
@@ -132,4 +194,10 @@ input, textarea {
 }
 .selected {
     background-color: #daddee;
+}
+.elementsTitle {
+      font-size: 30px;
+      margin-bottom: 0;
+  color: rgb(19, 170, 125);
+  filter: brightness(120%);
 }

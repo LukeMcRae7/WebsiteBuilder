@@ -46,11 +46,16 @@ function addElement(element, description) {
     updateElementList();
 }
 
-function editText() {
-    selectedElements.forEach(id => {
-    const text = prompt("Edit Text:", document.getElementById(id).innerHTML);
-        document.getElementById(id).innerHTML = text;
-    });
+function editText(element) {
+    if (document.getElementById(element).textContent) {
+        const text = prompt("Edit Text:", document.getElementById(element).innerHTML);
+        document.getElementById(element).innerHTML = text;
+    } else if (document.getElementById(element).src) {
+        const src = prompt("Edit URL:", document.getElementById(element).src);
+        document.getElementById(element).src = src;
+    } else {
+        throw(err);
+    }
     updateElementList();
 }
 
@@ -72,10 +77,24 @@ function updateElementList() {
     elements.forEach((item, index) => {
         const div = document.createElement('div');
         const textSpan = document.createElement('span');
+        const elementButtons = document.createElement('div');
+        const editBtn = document.createElement('button')
         const delBtn = document.createElement('button');
+
+        elementButtons.className = 'element-buttons';
+
+        editBtn.innerHTML = '<img src="./Media/edit.png">';
+        editBtn.style.backgroundColor = 'rgb(15, 123, 91)';
+        editBtn.className = 'editBtn';
+        editBtn.title = "Edit";
+        editBtn.onclick = (event) => {
+            event.stopPropagation();
+            editText(item.id);
+        };
         
-        delBtn.textContent = 'del';
+        delBtn.innerHTML = '<img src="./Media/trash.png">';
         delBtn.className = 'delBtn';
+        delBtn.title = "Delete";
         delBtn.onclick = (event) => {
             event.stopPropagation();
             removeElement(item.id);
@@ -88,7 +107,9 @@ function updateElementList() {
             div.classList.add('eleSelected');
         }
         div.appendChild(textSpan);
-        div.appendChild(delBtn);
+        div.appendChild(elementButtons)
+        elementButtons.appendChild(editBtn)
+        elementButtons.appendChild(delBtn);
         
         div.setAttribute('draggable', true);
         div.id = `list-${item.id}`;
@@ -261,7 +282,7 @@ function buttonSelection(button, type) {
 
     function updatedButtonBackground(item) {
         if (item.toggled) {
-            item.style.backgroundColor = '#9c9ca5';
+            item.style.backgroundColor = 'rgb(191, 190, 190)';
         }
         else {
             item.style.backgroundColor = '#fff'

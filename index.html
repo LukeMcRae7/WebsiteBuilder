@@ -18,7 +18,7 @@
             <option value="Courier">Courier</option>
         </select>
         <select class="menuItem" id="fontSize" onselect="applyStyle('fontSize', this.value + 'px')" onchange="applyStyle('fontSize', this.value + 'px')">
-            <option class="asdf" value="12">12</option>
+            <option value="12">12</option>
             <option value="14">14</option>
             <option value="16">16</option>
             <option value="18">18</option>
@@ -26,6 +26,9 @@
             <option value="32">32</option>
             <option value="48">48</option>
             <option value="60">60</option>
+            <option value="72">72</option>
+            <option value="90">90</option>
+            <option value="120">120</option>
         </select>
     </div>
     <div class="menuGroup">
@@ -36,10 +39,11 @@
     </div>
     <div class="menuGroup">
         <h3>Align</h3>
-        <span id="leftButton" class="menuItem" onclick="applyAlign('left', this)">Left</span>
-        <span id="centerButton" class="menuItem" onclick="applyAlign('center', this)">Center</span>
-        <span id="rightButton" class="menuItem" onclick="applyAlign('right', this)">Right</span>
-        <span class="menuItem" onclick="editText()">Edit Text</span>
+        <div class="alignWrapper">
+        <span id="leftButton" class="menuItem alignImg" onclick="applyAlign('left', this)"><img  src="./media/alignL.png"></span>
+        <span id="centerButton" class="menuItem alignImg" onclick="applyAlign('center', this)"><img src="./media/alignM.png"></span>
+        <span id="rightButton" class="menuItem alignImg" onclick="applyAlign('right', this)"><img src="./media/alignR.png"></span>
+        </div>
     </div>
     <div class="menuGroup">
         <h3>Color</h3>
@@ -60,13 +64,13 @@
 <div id="mainContent">
     <div id="controls">
         <div class="mainControls">
-            <button onclick="addHeading()"><b class="gradientText" style="font-size: 70px;">h1</b><br>Add Heading</button>
-            <button onclick="addParagraph()"><b class="gradientText" style="font-size: 70px;">P</b><br>Add Paragraph</button>
+            <button onclick="addHeading()"><b style="font-size: 70px;">h1</b><br>Add Heading</button>
+            <button onclick="addParagraph()"><b style="font-size: 70px;">P</b><br>Add Paragraph</button>
             <button onclick="addImage()"><img style="width: 80px;" src="media/img.png"><br>Add Image</button>
             <button onclick="generateHTML()"><img style="width: 80px;" src="media/code.png"><br>Generate HTML</button>
         </div>
-        <h3 style="color: white">Elements</h3>
-        <span class="menuItem" onclick="selectAllElements()">Select All</span>
+        <h3 class="elementsTitle">Elements</h3>
+        <span class="menuItem" style="width: 110px; font-size: 20px;" onclick="selectAllElements()">Select All</span>
         <div id="elementList"></div>
     </div>
     <div id="preview" onclick="deselectAllElements()"></div>
