@@ -11,14 +11,14 @@
 <div id="topMenu">
     <div class="menuGroup">
         <h3>Font</h3>
-        <select id="fontFamily" onchange="applyStyle('fontFamily', this.value)">
+        <select class="menuItem" id="fontFamily" onchange="applyStyle('fontFamily', this.value)">
             <option value="Arial">Arial</option>
             <option value="Helvetica">Helvetica</option>
             <option value="TimesNewRoman">Times New Roman</option>
             <option value="Courier">Courier</option>
         </select>
-        <select id="fontSize" onselect="applyStyle('fontSize', this.value + 'px')" onchange="applyStyle('fontSize', this.value + 'px')">
-            <option value="12">12</option>
+        <select class="menuItem" id="fontSize" onselect="applyStyle('fontSize', this.value + 'px')" onchange="applyStyle('fontSize', this.value + 'px')">
+            <option class="asdf" value="12">12</option>
             <option value="14">14</option>
             <option value="16">16</option>
             <option value="18">18</option>
@@ -59,10 +59,12 @@
 </div>
 <div id="mainContent">
     <div id="controls">
-        <button onclick="addHeading()">Add Heading</button>
-        <button onclick="addParagraph()">Add Paragraph</button>
-        <button onclick="addImage()">Add Image</button>
-        <button onclick="generateHTML()">Generate HTML</button>
+        <div class="mainControls">
+            <button onclick="addHeading()"><b class="gradientText" style="font-size: 70px;">h1</b><br>Add Heading</button>
+            <button onclick="addParagraph()"><b class="gradientText" style="font-size: 70px;">P</b><br>Add Paragraph</button>
+            <button onclick="addImage()"><img style="width: 80px;" src="media/img.png"><br>Add Image</button>
+            <button onclick="generateHTML()"><img style="width: 80px;" src="media/code.png"><br>Generate HTML</button>
+        </div>
         <h3 style="color: white">Elements</h3>
         <span class="menuItem" onclick="selectAllElements()">Select All</span>
         <div id="elementList"></div>

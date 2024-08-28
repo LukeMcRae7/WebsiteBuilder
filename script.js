@@ -47,8 +47,8 @@ function addElement(element, description) {
 }
 
 function editText() {
-    const text = prompt("Enter new text:");
     selectedElements.forEach(id => {
+    const text = prompt("Edit Text:", document.getElementById(id).innerHTML);
         document.getElementById(id).innerHTML = text;
     });
     updateElementList();

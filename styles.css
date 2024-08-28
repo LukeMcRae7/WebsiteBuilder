@@ -20,19 +20,26 @@ body {
 .menuGroup h3 {
     margin: 0 0 5px 0;
     font-size: 14px;
-    color: #b1b1b1;
+    color: #8de3a8;
 }
 .menuItem {
     display: inline-block;
     padding: 5px 10px;
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: #e0e5ef;
+    border: 1px solid #3c3c40;
     margin-right: 5px;
     cursor: pointer;
+    border-radius: 5px;
 }
 .menuItem:hover {
     background-color: #e6e6e6;
 }
+.mainControls {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
 #mainContent {
     display: flex;
     flex-grow: 1;
@@ -52,19 +59,35 @@ body {
     overflow-y: auto;
 }
 button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #4CAF50;
-    color: white;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 5px;
+    margin: 5px;
+    background-color: #23703c;
+    color: rgb(190, 190, 190);
     border: none;
     cursor: pointer;
     border-radius: 6px;
-    font-size: 15px;
+    font-size: 10px;
+    height: 120px;
+    width: 120px;
+    transition: 0.1s all;
+}
+button > img {
+    filter:invert(70%)
+
+}
+select {
+    height: 30px;
 }
 button:hover {
-    background-color: #45a049;
+    background-color: #289e4d;
+    color: white;
+}
+button:hover > img {
+    filter: invert();
 }
 input, textarea {
     width: 100%;
