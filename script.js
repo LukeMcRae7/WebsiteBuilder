@@ -83,7 +83,7 @@ function updateElementList() {
 
         elementButtons.className = 'element-buttons';
 
-        editBtn.innerHTML = '<img src="./Media/edit.png">';
+        editBtn.innerHTML = '<img src="./media/edit.png">';
         editBtn.style.backgroundColor = 'rgb(15, 123, 91)';
         editBtn.className = 'editBtn';
         editBtn.title = "Edit";
@@ -92,7 +92,7 @@ function updateElementList() {
             editText(item.id);
         };
         
-        delBtn.innerHTML = '<img src="./Media/trash.png">';
+        delBtn.innerHTML = '<img src="./media/trash.png">';
         delBtn.className = 'delBtn';
         delBtn.title = "Delete";
         delBtn.onclick = (event) => {
