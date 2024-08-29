@@ -9,38 +9,44 @@ body {
 }
 #topMenu {
     background-color: #2a2b35;
-    border-bottom: 1px solid #ccc;
-    padding: 10px;
+    border-bottom: 0.052083vw solid #ccc;
+    padding: 0.520833vw;
+    font-size: 1vw;
 }
 .menuGroup {
     display: inline-block;
-    margin-right: 20px;
+    margin-right: 1.041667vw;
     vertical-align: top;
 }
 .menuGroup h3 {
-    margin: 0 0 5px 0;
-    font-size: 14px;
-  color: rgb(85, 200, 166);
-  filter: brightness(120%);
+    margin: 0 0 0.260417vw 0;
+    font-size: 0.729167vw;
+    color: rgb(85, 200, 166);
+    filter: brightness(120%);
 }
 .menuItem {
     display: inline-block;
-    padding: 5px 10px;
+    padding: 0.260417vw 0.520833vw;
     background-color: #ffffff;
-    border: 1px solid #3c3c40;
-    margin-right: 5px;
+    border: 0.052083vw solid #3c3c40;
+    margin-right: 0.260417vw;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 0.260417vw;
 }
 .menuItem:hover {
     background-color: #e6e6e6;
 }
-.menuGroup > input {
-    height: 30px;
-    margin-bottom: 0;
+.menuGroup > input[type="color"] {
+    width: 3.125vw;
+    height: 1.5625vw;
+    padding: 0;
+    border: none;
+    cursor: pointer;
 }
-.menuGroup > span {
-    transition: 0.1s all;
+.menuGroup > select {
+    height: 1.5625vw;
+    font-size: 0.729167vw;
+    padding: 0 0.260417vw;
 }
 .mainControls {
     display: flex;
@@ -50,34 +56,34 @@ body {
 .alignWrapper {
     padding: 0;
     margin: 0;
-    border-radius: 8px;
+    border-radius: 0.416667vw;
     font-size: 0;
     overflow: hidden;
 }
 .alignImg {
     padding: 0;
-    height: 29px;
+    height: 1.510417vw;
     margin: 0;
     border-radius: 0;
 }
 .alignImg > img {
-    width: 30px;
+    width: 1.5625vw;
 }
 #mainContent {
     display: flex;
     flex-grow: 1;
 }
 #controls {
-    width: 300px;
+    width: 15.625vw;
     background-color: #383943;
-    padding: 20px;
+    padding: 1.041667vw;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
 }
 #preview {
     flex-grow: 1;
-    padding: 20px;
+    padding: 1.041667vw;
     box-sizing: border-box;
     overflow-y: auto;
 }
@@ -86,56 +92,56 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 5px;
-    margin: 5px;
+    padding: 0.260417vw;
+    margin: 0.260417vw;
     background-color: rgb(15, 123, 91);
     color: rgb(191, 190, 190);
     border: none;
     cursor: pointer;
-    border-radius: 6px;
-    font-size: 10px;
-    height: 120px;
-    width: 120px;
+    border-radius: 0.3125vw;
+    font-size: 0.520833vw;
+    height: 6.25vw;
+    width: 6.25vw;
     transition: 0.15s all;
 }
 .mainControls > button > img {
     filter:invert(70%);
 }
 select {
-    height: 30px;
-    font-size: 15px;
+    height: 1.5625vw;
+    font-size: 0.78125vw;
 }
 .mainControls > button:hover {
     background-color: rgb(22, 193, 141);
     color: rgb(255, 255, 255);
     scale: 1.07;
-    box-shadow: 0 0 20px rgba(15, 71, 35, 0.9) inset;
+    box-shadow: 0 0 1.041667vw rgba(15, 71, 35, 0.9) inset;
 }
 .mainControls > button:hover > img {
     filter: invert();
 }
 input, textarea {
     width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
+    padding: 0.260417vw;
+    margin-bottom: 0.520833vw;
 }
 span {
     text-align: center;
 }
 .delBtn, .editBtn {
-    width: 30px;
-    height: 30px;
+    width: 1.5625vw;
+    height: 1.5625vw;
     background-color: #e16969;
     color: #5c1717;
-    margin-left: 3px;
+    margin-left: 0.15625vw;
     text-align: center;
-    font-size: 10px;
+    font-size: 0.520833vw;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     border: none;
-    border-radius: 3px;
+    border-radius: 0.15625vw;
     transition: 0.1s all;
 }
 
@@ -155,13 +161,13 @@ span {
 }
 
 .delBtn > img{
-    width: 23px;
-    height: 23px;
+    width: 1.197917vw;
+    height: 1.197917vw;
     filter: invert();
 }
 .editBtn > img {
-    width: 27px;
-    height: 27px;
+    width: 1.40625vw;
+    height: 1.40625vw;
     filter: invert();
 }
 .element-buttons {
@@ -172,19 +178,20 @@ span {
 #elementList {
     flex-grow: 1;
     overflow-y: auto;
-    border: 1px solid #464750;
-    margin-top: 10px;
-    padding: 10px;
+    border: 0.052083vw solid #464750;
+    margin-top: 0.520833vw;
+    padding: 0.520833vw;
     color: #c8c8ca;
 }
 .element-item {
-    padding: 5px;
+    padding: 0.260417vw;
     cursor: pointer;
-    border-bottom: 1px solid #464750;
+    border-bottom: 0.052083vw solid #464750;
     align-items: center;
     justify-content: space-between;
     display: flex;
     transition: 0.1s;
+    font-size: 0.85vw;
 }
 .element-item:hover {
     background-color: #3d3e46;
@@ -196,8 +203,8 @@ span {
     background-color: #daddee;
 }
 .elementsTitle {
-      font-size: 30px;
-      margin-bottom: 0;
-  color: rgb(19, 170, 125);
-  filter: brightness(120%);
+    font-size: 1.5625vw;
+    margin-bottom: 0;
+    color: rgb(19, 170, 125);
+    filter: brightness(120%);
 }

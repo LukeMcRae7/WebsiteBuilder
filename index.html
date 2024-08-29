@@ -54,7 +54,7 @@
         <input type="color" value="#ffffff" onchange="applyBodyStyle('backgroundColor', this.value)">
     </div>
     <div id="imageControls" style="display: inline; opacity: 0; transition: 0.1s;">
-    <div style="display: inline-flex; border-left: 2px solid #b1b1b1; height: 100%; width: 10px;"></div>
+    <div style="display: inline-flex; border-left: 0.104vw solid #b1b1b1; height: 100%; width: 0.521vw;"></div>
     <div class="menuGroup">
         <h3>Image Scale</h3>
     <input id="imageRange" disabled="true" type="range" max="100" min="0" value="25" onchange="applyStyle('width', this.value + '%')">
@@ -64,13 +64,13 @@
 <div id="mainContent">
     <div id="controls">
         <div class="mainControls">
-            <button onclick="addHeading()"><b style="font-size: 70px;">h1</b><br>Add Heading</button>
-            <button onclick="addParagraph()"><b style="font-size: 70px;">P</b><br>Add Paragraph</button>
-            <button onclick="addImage()"><img style="width: 80px;" src="media/img.png"><br>Add Image</button>
-            <button onclick="generateHTML()"><img style="width: 80px;" src="media/code.png"><br>Generate HTML</button>
+            <button onclick="addHeading()"><b style="font-size: 3.646vw;">h1</b><br>Add Heading</button>
+            <button onclick="addParagraph()"><b style="font-size: 3.646vw;">P</b><br>Add Paragraph</button>
+            <button onclick="addImage()"><img style="width: 4.1667vw;" src="media/img.png"><br>Add Image</button>
+            <button onclick="generateHTML()"><img style="width: 4.1667vw;" src="media/code.png"><br>Generate HTML</button>
         </div>
         <h3 class="elementsTitle">Elements</h3>
-        <span class="menuItem" style="width: 110px; font-size: 20px;" onclick="selectAllElements()">Select All</span>
+        <span class="menuItem" style="width: 5.729vw; font-size: 1.042vw;" onclick="selectAllElements()">Select All</span>
         <div id="elementList"></div>
     </div>
     <div id="preview" onclick="deselectAllElements()"></div>
